@@ -186,22 +186,39 @@
 					</includes>
 				</configuration>
 			</plugin>
-			<!--  JavaDoc -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<configuration>
-					<doclint>none</doclint>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+		<!-- Jetty Maven Plugin -->
+		<plugin>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-maven-plugin</artifactId>
+			<version>11.0.15</version>
+			<configuration>
+				<httpConnector>
+					<port>8080</port>
+				</httpConnector>
+				<webApp>
+					<contextPath>/${project.artifactId}-${project.version}</contextPath>
+				</webApp>
+				<securityHandler>
+					<securityHandlerType>org.eclipse.jetty.security.SecurityHandler$NoOp</securityHandlerType>
+				</securityHandler>
+			</configuration>
+		</plugin>
+		<!--  JavaDoc -->
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<configuration>
+				<doclint>none</doclint>
+			</configuration>
+			<executions>
+				<execution>
+					<id>attach-sources</id>
+					<goals>
+						<goal>jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
 		</plugins>
 	</build>
 
